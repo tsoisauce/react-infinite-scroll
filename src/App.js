@@ -1,31 +1,42 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      data: [],
+      perPage: 5,
+      page: 1,
+      totalPages: null
     };
   }
 
   componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then((response) => {
-      this.setState({
-        isLoaded: true,
-        items: response.data
+    this.getData();
+  }
+
+  getData() {
+    const { page, perPage } = this.state;
+    axios
+      .get(
+        `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${perPage}`
+      )
+      .then(response => {
+        this.setState({
+          isLoaded: true,
+          data: response.data
+        });
+      })
+      .catch(err => {
+        console.log("errior: ", err);
       });
-    })
-    .catch((err) => {
-      console.log('errior: ', err)
-    })
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, data } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -36,10 +47,8 @@ class App extends Component {
           <h1>Infinite Scroll Challenge</h1>
           <div>
             <ul>
-              {items.map(item => (
-                <li key={item.id}>
-                  {item.title}
-                </li>
+              {data.map(item => (
+                <li key={item.id}>{item.title}</li>
               ))}
             </ul>
           </div>
@@ -48,6 +57,5 @@ class App extends Component {
     }
   }
 }
-
 
 export default App;
