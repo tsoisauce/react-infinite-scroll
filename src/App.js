@@ -10,7 +10,8 @@ class App extends Component {
       data: [],
       perPage: 5,
       page: 1,
-      totalPages: null
+      totalPages: null,
+      scrolling: false
     };
   }
 
@@ -27,12 +28,22 @@ class App extends Component {
       .then(response => {
         this.setState({
           isLoaded: true,
-          data: response.data
+          data: [...this.state.data, ...response.data]
         });
       })
       .catch(err => {
         console.log("errior: ", err);
       });
+  }
+
+  loadMoreData() {
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+      isLoaded: false,
+      scrolling: true
+    }));
+    this.getData();
+    // console.log(this.state.data)
   }
 
   render() {
@@ -51,6 +62,13 @@ class App extends Component {
                 <li key={item.id}>{item.title}</li>
               ))}
             </ul>
+            <button
+              onClick={e => {
+                this.loadMoreData();
+              }}
+            >
+              Load More Posts
+            </button>
           </div>
         </div>
       );
