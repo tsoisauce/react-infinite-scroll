@@ -10,7 +10,6 @@ class App extends Component {
       data: [],
       perPage: 10,
       page: 1,
-      totalPages: null,
       scrolling: false
     };
   }
