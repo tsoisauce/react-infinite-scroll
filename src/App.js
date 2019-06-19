@@ -8,7 +8,7 @@ class App extends Component {
       error: null,
       isLoaded: false,
       data: [],
-      perPage: 5,
+      perPage: 10,
       page: 1,
       totalPages: null,
       scrolling: false
@@ -17,6 +17,9 @@ class App extends Component {
 
   componentDidMount() {
     this.getData();
+    this.scrollListener = window.addEventListener("scroll", e => {
+      this.infiniteScroll(e);
+    });
   }
 
   getData() {
@@ -44,6 +47,15 @@ class App extends Component {
     }));
     this.getData();
     // console.log(this.state.data)
+  }
+
+  infiniteScroll() {
+    let lastElement = document.querySelector("ul > li:last-child");
+    let lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
+    let pageOffset = window.pageYOffset + window.innerHeight;
+    if (pageOffset > lastElementOffset) {
+      this.getData();
+    }
   }
 
   render() {
