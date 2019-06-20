@@ -8,9 +8,8 @@ class App extends Component {
       error: null,
       isLoaded: false,
       data: [],
-      perPage: 10,
-      page: 1,
-      scrolling: false
+      perPage: 20,
+      page: 1
     };
   }
 
@@ -25,27 +24,18 @@ class App extends Component {
     const { page, perPage } = this.state;
     axios
       .get(
-        `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${perPage}`
+        `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=${perPage}`
       )
       .then(response => {
-        this.setState({
+        this.setState(prevState => ({
+          page: prevState.page + 1,
           isLoaded: true,
           data: [...this.state.data, ...response.data]
-        });
+        }));
       })
       .catch(err => {
         console.log("errior: ", err);
       });
-  }
-
-  loadMoreData() {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-      isLoaded: false,
-      scrolling: true
-    }));
-    this.getData();
-    // console.log(this.state.data)
   }
 
   infiniteScroll() {
@@ -70,15 +60,15 @@ class App extends Component {
           <div>
             <ul>
               {data.map(item => (
-                <li key={item.id}>{item.title}</li>
+                <li key={item.id}>{item.email}</li>
               ))}
             </ul>
             <button
               onClick={e => {
-                this.loadMoreData();
+                this.getData();
               }}
             >
-              Load More Posts
+              Load More Comments
             </button>
           </div>
         </div>
