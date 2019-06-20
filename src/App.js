@@ -15,8 +15,8 @@ class App extends Component {
 
   componentDidMount() {
     this.getData();
-    this.scrollListener = window.addEventListener("scroll", e => {
-      this.infiniteScroll(e);
+    window.addEventListener("scroll", e => {
+      this.infiniteScroll();
     });
   }
 
