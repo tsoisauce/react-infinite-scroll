@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "./App.css";
 class App extends Component {
   constructor(props) {
@@ -24,15 +23,16 @@ class App extends Component {
 
   getData() {
     const { page, perPage } = this.state;
-    axios
-      .get(
-        `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=${perPage}`
-      )
+    fetch(
+      `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=${perPage}`
+    )
+      .then(response => response.json())
       .then(response => {
+        console.log(response);
         this.setState(prevState => ({
           page: prevState.page + 1,
           loading: false,
-          data: [...this.state.data, ...response.data]
+          data: [...this.state.data, ...response]
         }));
       })
       .catch(err => {
