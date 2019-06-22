@@ -16,7 +16,7 @@ class App extends Component {
   componentDidMount() {
     this.getData();
     window.addEventListener("scroll", e => {
-      if(!this.state.loading) {
+      if (!this.state.loading) {
         this.infiniteScroll();
       }
     });
@@ -45,7 +45,7 @@ class App extends Component {
     let lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
     let pageOffset = window.pageYOffset + window.innerHeight;
     if (pageOffset > lastElementOffset) {
-      this.setState({loading: true})
+      this.setState({ loading: true });
       this.getData();
     }
   }
@@ -68,7 +68,7 @@ class App extends Component {
             </ul>
             <button
               onClick={e => {
-                this.setState({loading: true})
+                this.setState({ loading: true });
                 this.getData();
               }}
             >
