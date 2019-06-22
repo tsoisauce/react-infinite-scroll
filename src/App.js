@@ -6,7 +6,7 @@ class App extends Component {
     super(props);
     this.state = {
       error: null,
-      isLoaded: false,
+      loading: false,
       data: [],
       perPage: 20,
       page: 1
@@ -16,7 +16,9 @@ class App extends Component {
   componentDidMount() {
     this.getData();
     window.addEventListener("scroll", e => {
-      this.infiniteScroll();
+      if(!this.state.loading) {
+        this.infiniteScroll();
+      }
     });
   }
 
@@ -29,7 +31,7 @@ class App extends Component {
       .then(response => {
         this.setState(prevState => ({
           page: prevState.page + 1,
-          isLoaded: true,
+          loading: false,
           data: [...this.state.data, ...response.data]
         }));
       })
@@ -43,15 +45,16 @@ class App extends Component {
     let lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
     let pageOffset = window.pageYOffset + window.innerHeight;
     if (pageOffset > lastElementOffset) {
+      this.setState({loading: true})
       this.getData();
     }
   }
 
   render() {
-    const { error, isLoaded, data } = this.state;
+    const { error, loading, data } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    } else if (loading) {
       return <div>Loading...</div>;
     } else {
       return (
@@ -65,6 +68,7 @@ class App extends Component {
             </ul>
             <button
               onClick={e => {
+                this.setState({loading: true})
                 this.getData();
               }}
             >
