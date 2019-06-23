@@ -43,7 +43,8 @@ class App extends Component {
   }
 
   infiniteScroll() {
-    let lastElement = document.querySelector("ul > li:last-child");
+    // checks to see if div is scrolled into view
+    let lastElement = document.getElementsByClassName("lastElement");
     let lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
     let pageOffset = window.pageYOffset + window.innerHeight;
     if (pageOffset > lastElementOffset) {
@@ -62,12 +63,25 @@ class App extends Component {
       return (
         <div className="App">
           <h1>Infinite Scroll Challenge</h1>
-          <div>
-            <ul>
-              {data.map(item => (
-                <li key={item.id}>{item.email}</li>
-              ))}
-            </ul>
+          <div className="cards">
+            {data.map(item => (
+              <div 
+                key={item.id}
+                className="card"
+              >
+                <div className="email">
+                  {item.email}
+                </div>
+                <div className="name">
+                  {item.name}
+                </div>  
+                <div className="comment">
+                  {item.body}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="lastElement">
             <button
               onClick={e => {
                 this.setState({ loading: true });
