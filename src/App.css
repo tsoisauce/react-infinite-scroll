@@ -52,9 +52,6 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.info {
-  padding: 2px 16px;
-}
 
 /* loader */
 .loader {
@@ -69,4 +66,16 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* load more button */
+.button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
