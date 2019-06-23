@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -74,7 +75,16 @@ class App extends Component {
               </div>
             ))}
           </div>
-          <div className="lastElement"></div>
+          <div className="lastElement">
+            <button
+              onClick={e => {
+                this.setState({ loading: true });
+                this.getData();
+              }}
+            >
+              load more
+            </button>
+          </div>
         </div>
       );
     }
