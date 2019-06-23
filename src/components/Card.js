@@ -1,9 +1,9 @@
 import React from "react";
 
 const Card = props => {
-  const { id, email, name, body } = props.item;
+  const { email, name, body } = props.item;
   return (
-    <div key={id} className="card">
+    <div className="card">
       <div className="info">
         <div className="email">{email}</div>
         <div className="name">{name}</div>

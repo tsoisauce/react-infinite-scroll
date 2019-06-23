@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "./Card"
+import Card from "./Card";
 import "../App.css";
 
 class InfiniteScroll extends Component {
@@ -73,7 +73,7 @@ class InfiniteScroll extends Component {
           <h1>Infinite Scroll Challenge</h1>
           <div className="cards">
             {data.map(item => (
-              <Card item={item} />
+              <Card key={item.id} item={item} />
             ))}
           </div>
           <div className="lastElement">
