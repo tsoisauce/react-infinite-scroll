@@ -45,9 +45,11 @@ class App extends Component {
   infiniteScroll() {
     // checks to see if div is scrolled into view
     let lastElement = document.getElementsByClassName("lastElement");
-    let lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
-    let pageOffset = window.pageYOffset + window.innerHeight;
-    if (pageOffset > lastElementOffset) {
+    let bounding = lastElement[0].getBoundingClientRect();
+    let elementTop = bounding.top;
+    let elementBottom = bounding.bottom;
+    let isVisible = elementTop >= 0 && elementBottom <= window.innerHeight;
+    if (isVisible) {
       this.setState({ loading: true });
       this.getData();
     }
@@ -65,19 +67,10 @@ class App extends Component {
           <h1>Infinite Scroll Challenge</h1>
           <div className="cards">
             {data.map(item => (
-              <div 
-                key={item.id}
-                className="card"
-              >
-                <div className="email">
-                  {item.email}
-                </div>
-                <div className="name">
-                  {item.name}
-                </div>  
-                <div className="comment">
-                  {item.body}
-                </div>
+              <div key={item.id} className="card">
+                <div className="email">{item.email}</div>
+                <div className="name">{item.name}</div>
+                <div className="comment">{item.body}</div>
               </div>
             ))}
           </div>
