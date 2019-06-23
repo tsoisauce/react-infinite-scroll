@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
-class App extends Component {
+import "../App.css";
+
+class Test extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getData();
+    this.loadingData();
     window.addEventListener("scroll", e => {
       if (!this.state.loading) {
         this.infiniteScroll();
@@ -43,13 +44,20 @@ class App extends Component {
   }
 
   infiniteScroll() {
-    let lastElement = document.querySelector("ul > li:last-child");
-    let lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
-    let pageOffset = window.pageYOffset + window.innerHeight;
-    if (pageOffset > lastElementOffset) {
-      this.setState({ loading: true });
-      this.getData();
+    // checks to see if div is scrolled into view
+    let lastElement = document.getElementsByClassName("lastElement");
+    let bounding = lastElement[0].getBoundingClientRect();
+    let elementTop = bounding.top;
+    let elementBottom = bounding.bottom;
+    let isVisible = elementTop >= 0 && elementBottom <= window.innerHeight;
+    if (isVisible) {
+      this.loadingData();
     }
+  }
+
+  loadingData() {
+    this.setState({ loading: true });
+    this.getData();
   }
 
   render() {
@@ -57,24 +65,30 @@ class App extends Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (loading) {
-      return <div>Loading...</div>;
+      return <div className="loader" />;
     } else {
       return (
         <div className="App">
           <h1>Infinite Scroll Challenge</h1>
-          <div>
-            <ul>
-              {data.map(item => (
-                <li key={item.id}>{item.email}</li>
-              ))}
-            </ul>
+          <div className="cards">
+            {data.map(item => (
+              <div key={item.id} className="card">
+                <div className="info">
+                  <div className="email">{item.email}</div>
+                  <div className="name">{item.name}</div>
+                  <div className="comment">{item.body}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="lastElement">
             <button
               onClick={e => {
-                this.setState({ loading: true });
-                this.getData();
+                this.loadingData();
               }}
+              className="button"
             >
-              Load More Comments
+              load more
             </button>
           </div>
         </div>
@@ -83,4 +97,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Test;
