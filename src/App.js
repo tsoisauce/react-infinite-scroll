@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getData();
+    this.loadingData();
     window.addEventListener("scroll", e => {
       if (!this.state.loading) {
         this.infiniteScroll();
@@ -51,9 +51,13 @@ class App extends Component {
     let elementBottom = bounding.bottom;
     let isVisible = elementTop >= 0 && elementBottom <= window.innerHeight;
     if (isVisible) {
-      this.setState({ loading: true });
-      this.getData();
+      this.loadingData();
     }
+  }
+
+  loadingData() {
+    this.setState({ loading: true });
+    this.getData();
   }
 
   render() {
@@ -61,7 +65,7 @@ class App extends Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (loading) {
-      return <div>Loading...</div>;
+      return <div className="loader"></div>;
     } else {
       return (
         <div className="App">
@@ -80,8 +84,7 @@ class App extends Component {
           <div className="lastElement">
             <button
               onClick={e => {
-                this.setState({ loading: true });
-                this.getData();
+                this.loadingData();
               }}
             >
               load more
