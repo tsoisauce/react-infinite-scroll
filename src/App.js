@@ -28,7 +28,6 @@ class App extends Component {
     )
       .then(response => response.json())
       .then(response => {
-        console.log(response);
         this.setState(prevState => ({
           page: prevState.page + 1,
           loading: false,
