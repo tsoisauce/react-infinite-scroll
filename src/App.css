@@ -77,5 +77,14 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 24px;
+  width: 250px;
+  opacity: 0.5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 1;
 }

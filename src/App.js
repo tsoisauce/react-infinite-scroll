@@ -1,10 +1,10 @@
 import React from 'react'
-import Test from './components/InfiniteScroll.2'
+import InfiniteScroll from './components/InfiniteScroll.2'
 
 const App = () => {
   return (
     <div>
-      <Test />
+      <InfiniteScroll />
     </div>
   )
 }
