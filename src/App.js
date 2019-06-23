@@ -74,16 +74,7 @@ class App extends Component {
               </div>
             ))}
           </div>
-          <div className="lastElement">
-            <button
-              onClick={e => {
-                this.setState({ loading: true });
-                this.getData();
-              }}
-            >
-              Load More Comments
-            </button>
-          </div>
+          <div className="lastElement"></div>
         </div>
       );
     }
