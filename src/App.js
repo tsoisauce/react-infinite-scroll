@@ -34,10 +34,10 @@ class App extends Component {
           data: [...this.state.data, ...response]
         }));
       })
-      .catch((error) => {
+      .catch(error => {
         this.setState({
           error
-        })
+        });
         console.log("error: ", error);
       });
   }
