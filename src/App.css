@@ -32,6 +32,7 @@
   }
 }
 
+/* cards */
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -51,6 +52,39 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.info {
-  padding: 2px 16px;
+
+/* loader */
+.loader {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* load more button */
+.button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 24px;
+  width: 250px;
+  opacity: 0.5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 1;
 }
