@@ -29,11 +29,14 @@ class InfiniteScroll extends Component {
     )
       .then(response => response.json())
       .then(response => {
-        this.setState(prevState => ({
-          page: prevState.page + 1,
-          loading: false,
-          data: [...this.state.data, ...response]
-        }));
+        setTimeout(function() {
+          console.log("time")
+          this.setState(prevState => ({
+            page: prevState.page + 1,
+            loading: false,
+            data: [...this.state.data, ...response]
+          }));
+        }, 10000)
       })
       .catch(error => {
         this.setState({
