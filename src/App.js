@@ -69,10 +69,12 @@ class App extends Component {
           <div className="cards">
             {data.map(item => (
               <div key={item.id} className="card">
-                <div className="email">{item.email}</div>
-                <div className="name">{item.name}</div>
-                <div className="comment">{item.body}</div>
-              </div>
+                <div className="info">
+                  <div className="email">{item.email}</div>
+                  <div className="name">{item.name}</div>
+                  <div className="comment">{item.body}</div>
+                </div>
+              </div>  
             ))}
           </div>
           <div className="lastElement">
