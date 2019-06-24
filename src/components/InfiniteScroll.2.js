@@ -16,6 +16,7 @@ class InfiniteScroll extends Component {
 
   componentDidMount() {
     this.loadingData();
+    this.setState({ loading: false });
     window.addEventListener("scroll", e => {
       if (!this.state.loading) {
         this.infiniteScroll();
@@ -53,13 +54,13 @@ class InfiniteScroll extends Component {
     let isVisible = elementTop >= 0 && elementBottom <= window.innerHeight;
     if (isVisible) {
       this.loadingData();
+      this.setState({ loading: false });
     }
   }
 
   loadingData() {
     this.setState({ loading: true });
     this.getData();
-    this.setState({ loading: false });
   }
 
   render() {
@@ -77,6 +78,7 @@ class InfiniteScroll extends Component {
             <button
               onClick={e => {
                 this.loadingData();
+                this.setState({ loading: false });
               }}
               className="button"
             >
