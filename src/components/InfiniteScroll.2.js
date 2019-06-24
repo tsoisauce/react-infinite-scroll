@@ -68,7 +68,7 @@ class InfiniteScroll extends Component {
     } else if (loading) {
       return <div className="loader" />;
     } else {
-      return (
+      return (  
         <div className="App">
           <h1>Infinite Scroll Challenge</h1>
             <Cards items={data} />
