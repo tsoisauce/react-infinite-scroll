@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "./Card";
+import Cards from "./Cards";
 import "../App.css";
 
 class InfiniteScroll extends Component {
@@ -71,11 +71,7 @@ class InfiniteScroll extends Component {
       return (
         <div className="App">
           <h1>Infinite Scroll Challenge</h1>
-          <div className="cards">
-            {data.map(item => (
-              <Card key={item.id} item={item} />
-            ))}
-          </div>
+            <Cards items={data} />
           <div className="lastElement">
             <button
               onClick={e => {
