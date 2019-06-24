@@ -4,7 +4,7 @@ React infinite scroll component with no additional NPM packages. Good ole fashio
 Hosted on Netlify: [React Infinite Scroll Challenge](https://reverent-kilby-6aa341.netlify…)
 
 ## Motivation
-As a fullstack engineer, we are often pampered with nicely packaged CSS frameworks and JS libararies.  This is my take on the infinite scroll challenge using only vanilla JavaScript and pure CSS...minus the React library to keep my insanity. 🤪This is a personal challenge to learn and sharpen up my front-end development skill.  It will constantly be a WIP
+As a fullstack engineer, we are often pampered with nicely packaged CSS frameworks and JS libararies.  This is my take on the infinite scroll challenge using only vanilla JavaScript and pure CSS...minus the React library to keep my sanity. 🤪This is a personal challenge to learn and sharpen up my front-end development skill.  It will constantly be a WIP
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
