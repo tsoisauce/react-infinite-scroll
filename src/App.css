@@ -32,6 +32,11 @@
   }
 }
 
+/* global */
+body {
+  font: normal 14px Verdana, Arial, sans-serif;
+}
+
 /* cards */
 .cards {
   display: grid;
@@ -61,6 +66,12 @@
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
+  display: block;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 50%;
+  margin-right: -50%;
 }
 
 @keyframes spin {
@@ -69,6 +80,10 @@
 }
 
 /* load more button */
+.lastElement {
+  padding-top: 30px;
+}
+
 .button {
   background-color: #008CBA;
   border: none;

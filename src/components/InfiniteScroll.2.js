@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "./Card";
+import Cards from "./Cards";
 import "../App.css";
 
 class InfiniteScroll extends Component {
@@ -32,7 +32,7 @@ class InfiniteScroll extends Component {
       .then(response => {
         this.setState(prevState => ({
           page: prevState.page + 1,
-          loading: false,
+          // loading: false,      // setting state here will cause app to scroll to the top when page loads
           data: [...this.state.data, ...response]
         }));
       })
@@ -59,6 +59,7 @@ class InfiniteScroll extends Component {
   loadingData() {
     this.setState({ loading: true });
     this.getData();
+    this.setState({ loading: false });
   }
 
   render() {
@@ -71,11 +72,7 @@ class InfiniteScroll extends Component {
       return (
         <div className="App">
           <h1>Infinite Scroll Challenge</h1>
-          <div className="cards">
-            {data.map(item => (
-              <Card key={item.id} item={item} />
-            ))}
-          </div>
+          <Cards items={data} />
           <div className="lastElement">
             <button
               onClick={e => {
