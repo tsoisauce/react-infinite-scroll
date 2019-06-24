@@ -1,4 +1,4 @@
-## React Infinite Scroll Challenge
+## React Infinite Scroll Challenge [![Netlify Status](https://api.netlify.com/api/v1/badges/9edbcd0e-90dd-435f-a69e-e10d53ac8e35/deploy-status)](https://app.netlify.com/sites/reverent-kilby-6aa341/deploys)
 React infinite scroll component with no additional NPM packages. Good ole fashion JS and CSS 😎.  
 
 Hosted on Netlify: [React Infinite Scroll Challenge](https://reverent-kilby-6aa341.netlify…)
