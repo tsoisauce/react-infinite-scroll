@@ -32,6 +32,7 @@ class InfiniteScroll extends Component {
       .then(response => {
         this.setState(prevState => ({
           page: prevState.page + 1,
+          // loading: false,      // setting state here will cause app to scroll to the top when page loads
           data: [...this.state.data, ...response]
         }));
       })
