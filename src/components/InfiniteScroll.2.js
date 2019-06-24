@@ -32,7 +32,6 @@ class InfiniteScroll extends Component {
       .then(response => {
         this.setState(prevState => ({
           page: prevState.page + 1,
-          loading: false,
           data: [...this.state.data, ...response]
         }));
       })
@@ -59,6 +58,7 @@ class InfiniteScroll extends Component {
   loadingData() {
     this.setState({ loading: true });
     this.getData();
+    this.setState({ loading: false });
   }
 
   render() {
@@ -68,10 +68,10 @@ class InfiniteScroll extends Component {
     } else if (loading) {
       return <div className="loader" />;
     } else {
-      return (  
+      return (
         <div className="App">
           <h1>Infinite Scroll Challenge</h1>
-            <Cards items={data} />
+          <Cards items={data} />
           <div className="lastElement">
             <button
               onClick={e => {
