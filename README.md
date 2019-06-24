@@ -8,6 +8,11 @@ As a fullstack engineer, we are often pampered with nicely packaged CSS framewor
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Todos
+- [ ] Fix loader issue
+- [ ] Refactor loader state management
+- [ ] Refactor using React Hooks
+
 ## Available Scripts
 
 In the project directory, you can run:
