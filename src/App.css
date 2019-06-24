@@ -32,6 +32,11 @@
   }
 }
 
+/* global */
+body {
+  font: normal 14px Verdana, Arial, sans-serif;
+}
+
 /* cards */
 .cards {
   display: grid;
