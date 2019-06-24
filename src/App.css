@@ -74,6 +74,10 @@ body {
 }
 
 /* load more button */
+.lastElement {
+  padding-top: 30px;
+}
+
 .button {
   background-color: #008CBA;
   border: none;
