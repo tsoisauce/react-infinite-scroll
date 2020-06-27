@@ -3,42 +3,60 @@ import Cards from "./Cards";
 import "../App.css";
 
 const InfiniteScroll = () => {
-  const [ state, setState ] = useState({
-    error: null,
-    loading: false,
+  const [ fetchData, setFetchData ] = useState({
     data: [],
     perPage: 20,
     page: 1
   });
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ isError, setIsError ] = useState(null);
 
-  const getData = async () => {
-    await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${state.page}&_limit=${state.perPage}`)
-    .then(response => {
-      if (!response.ok && response.status >= 400 && response.status < 600) {
+  const getData = () => {
+    setTimeout(async () => {
+      await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${fetchData.page}&_limit=${fetchData.perPage}`)
+      .then(response => {
+        if (!response.ok && response.status >= 400 && response.status < 600) {
+          setIsError(response.statusText);
           throw Error(response.statusText);
-      }
-      return response.json();
-    }).then(response => {
-      setState({
-        page: state.page + 1,
-        data: [...state.data, ...response]
+        }
+        return response.json();
+      }).then(response => {
+        setFetchData(prevState => ({
+          page: prevState.page + 1,
+          data: [...fetchData.data, ...response]
+        }));
+        setIsLoading(false);
+      }).catch(error => {
+        setIsError(error);
+        throw new Error(error);
       });
-    }).catch(error => {
-      setState({ error: error });
-      console.log("error: ", error);
-      throw new Error(error);
     });
   };
 
+  const handleScroll = () => {
+    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    setIsLoading(true);
+  };
+
   useEffect(() => {
+    // mounts once after component mounts, similar to componenDidMount
     getData();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);  
 
-  const { error, loading, data } = state;
+  useEffect(() => {
+    if (!isLoading) return;
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (loading) {
+  const { data } = fetchData;
+
+  if (isError) {
+    return <div>Error: {isError.message}</div>;
+  } else if (isLoading) {
     return <div className="loader" />;
   } else {
     return (
