@@ -1,5 +1,5 @@
-import React from 'react'
-import InfiniteScroll from './components/InfiniteScroll.2'
+import React from 'react';
+import InfiniteScroll from './components/InfiniteScroll';
 
 const App = () => {
   return (
@@ -7,6 +7,6 @@ const App = () => {
       <InfiniteScroll />
     </div>
   )
-}
+};
 
-export default App
+export default App;
