@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Cards from "./Cards";
-import "../App.css";
+import Cards from "../Cards/Cards";
 
 const InfiniteScroll = () => {
   const [ fetchData, setFetchData ] = useState({
