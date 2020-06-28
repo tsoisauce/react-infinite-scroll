@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Cards } from "../Cards";
-import { useInfiniteScroll } from "./hooks";
+import { Cards } from "../../Cards";
+import { useInfiniteScroll } from "../hooks";
 
 const InfiniteScroll = () => {
   const [ fetchData, setFetchData ] = useState({
