@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Cards } from "../Cards";
+import { useInfiniteScroll } from "./hooks";
 
 const InfiniteScroll = () => {
   const [ fetchData, setFetchData ] = useState({
@@ -7,10 +8,11 @@ const InfiniteScroll = () => {
     perPage: 20,
     page: 1
   });
-  const [ isLoading, setIsLoading ] = useState(false);
+  const [ isLoading, setIsLoading ] = useInfiniteScroll(getData);
   const [ isError, setIsError ] = useState(null);
+  const { data } = fetchData;
 
-  const getData = () => {
+  function getData() {
     setTimeout(async () => {
       await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${fetchData.page}&_limit=${fetchData.perPage}`)
       .then(response => {
@@ -31,27 +33,6 @@ const InfiniteScroll = () => {
       });
     });
   };
-
-  const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-    setIsLoading(true);
-  };
-
-  useEffect(() => {
-    // mounts once after component mounts, similar to componenDidMount
-    getData();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);  
-
-  useEffect(() => {
-    if (!isLoading) return;
-    getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
-
-  const { data } = fetchData;
 
   if (isError) {
     return <div>Error: {isError.message}</div>;

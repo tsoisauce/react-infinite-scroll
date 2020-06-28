@@ -12,9 +12,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Todos
 
-- [ ] Fix loader issue
-- [ ] Refactor loader state management
-- [ ] Refactor using React Hooks
+- [ ] TypeScript
+- [ ] Styled Components CSS
 
 ## Available Scripts
 
